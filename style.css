@@ -10,12 +10,15 @@
     user-select: none;
 }
 
-.done{
+.line-through{
     text-decoration: line-through;
 }
 
 .tasks{
+    min-width: 250px;
     background-color: rgba(211, 211, 211, 0.5);
+    box-shadow: 0 0 5px lightgray;
+    border: 1px solid rgba(0, 0, 0, 0.075);
     border-radius: 0.5rem;
     padding: 1.5rem;
     margin-top: 2rem;
@@ -28,7 +31,6 @@
 
 .todo_list{
     padding: 0;
-    list-style: none;
 }
 
 .todo_list>li{
@@ -40,4 +42,16 @@
 .todo_list>li:hover{
     background-color: rgba(154, 237, 143, 0.465);
     border-radius: 2rem;
+}
+
+.c_green{
+    color: green;
+}
+
+.c_red{
+    color: red;
+}
+
+.d_none{
+    display: none;
 }

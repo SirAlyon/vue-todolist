@@ -31,6 +31,8 @@ const app = new Vue ({
     },
     methods: {
         deleteTask(index){
+            console.log(this.tasks);
+            console.log(index);
             this.tasks.splice(index, 1)
         },
         addNewTask(){
@@ -39,16 +41,20 @@ const app = new Vue ({
                 done: false
             }
             console.log(newTaskObject);
-            this.tasks.push(newTaskObject)
-            this.newTask = ''
+            if (!this.newTask == ''){
+                this.tasks.unshift(newTaskObject)
+                this.newTask = ''
+            } 
         },
         doTask(index){
             //console.log(this.tasks[index].done);
             if (this.tasks[index].done){
                 this.tasks[index].done = false
+                
             } else {
                 this.tasks[index].done = true
             }
+            console.log(index);
         },
     }
 })

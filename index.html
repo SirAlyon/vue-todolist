@@ -17,16 +17,15 @@
                 <input type="text" v-model="newTask" @keyup.enter="addNewTask">
                 <button @click="addNewTask" class="btn btn-primary">Add</button> 
             </div>
-            <div class="tasks">
+            <div class="tasks" :class="tasks.length === 0 ? 'd_none' : '' ">
                 <h3>Todo tasks:</h3>
                 <ul class="todo_list">
-                    <li v-for="(task, index) in tasks" @click="doTask(index)" class="px-3 py-2 mt-3">
+                    <li v-for="(task, index) in tasks" class="px-3 py-2 mt-3">
                         <div>
-                            <i class="fa-solid fa-circle-dot fa-xs"></i>
-                            <span :class="task.done === true ? 'done' : ''">{{task.text}}</span> 
-    
+                            <i class="fa-solid fa-check fa-xs" :class="task.done === true ? 'c_green' : 'c_red'"></i>
+                            <span :class="task.done === true ? 'line-through' : ''" @click="doTask(index)">{{task.text}}</span> 
                         </div>
-                        <i @click="deleteTask" class="fa-solid fa-circle-xmark mx-2"></i>
+                        <i @click="deleteTask(index)" class="fa-solid fa-circle-xmark mx-2"></i>
                     </li>
                 </ul>
             </div>
