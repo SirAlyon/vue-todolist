@@ -43,12 +43,12 @@ const app = new Vue ({
             this.newTask = ''
         },
         doTask(index){
-            console.log(this.tasks[index].done);
+            //console.log(this.tasks[index].done);
             if (this.tasks[index].done){
                 this.tasks[index].done = false
             } else {
                 this.tasks[index].done = true
             }
-        }
+        },
     }
 })

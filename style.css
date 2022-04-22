@@ -7,6 +7,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    user-select: none;
 }
 
 .done{
@@ -18,4 +19,25 @@
     border-radius: 0.5rem;
     padding: 1.5rem;
     margin-top: 2rem;
+    
+}
+
+.tasks>h3{
+    text-align: center;
+}
+
+.todo_list{
+    padding: 0;
+    list-style: none;
+}
+
+.todo_list>li{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.todo_list>li:hover{
+    background-color: rgba(154, 237, 143, 0.465);
+    border-radius: 2rem;
 }
