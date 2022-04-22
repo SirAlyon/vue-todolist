@@ -14,14 +14,14 @@
         <div class="container m-auto">
             <h1>Todo List</h1>
             <div class="new_task">
-                <input type="text" v-model="newTask">
+                <input type="text" v-model="newTask" @keyup.enter="addNewTask">
                 <button @click="addNewTask" class="btn btn-primary">Add</button> 
             </div>
             <div class="tasks">
                 <h3>Todo tasks:</h3>
                 <ul>
-                    <li v-for="(task, index) in tasks" class="p-2":class="task.done === true ? 'done' : ''">
-                        {{task.text}}
+                    <li v-for="(task, index) in tasks" @click="doTask(index)" class="p-2":class="task.done === true ? 'done' : ''">
+                        <span >{{task.text}}</span> 
                         <i @click="deleteTask" class="fa-solid fa-circle-xmark mx-2"></i>
                     </li>
                 </ul>
