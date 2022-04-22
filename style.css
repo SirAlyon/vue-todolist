@@ -44,6 +44,10 @@
     border-radius: 2rem;
 }
 
+#logo{
+    width: 70px;
+}
+
 .c_green{
     color: green;
 }
