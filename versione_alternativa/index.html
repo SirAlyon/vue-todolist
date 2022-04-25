@@ -22,10 +22,10 @@
                 <button @click="addNewTask" class="btn btn-primary">Add</button> 
             </div>
             <section class="d-flex">
-                <div class="tasks" v-if="tasks.length !== 0">
+                <div class="tasks">
                    <h3>Todo List</h3>
                     <ul class="todo_list">
-                        <li v-if="task.done === false && task.deleted !== true" v-for="(task, index) in tasks" class="px-3 py-2 mt-3">
+                        <li v-if="task.done === false && task.deleted !== true" v-for="(task, index) in todoTasks" class="px-3 py-2 mt-3">
                             <div>
                                 <i class="fa-solid fa-check fa-xs c_green"></i>
                                 <span @click="doTask(index, task)">{{task.text}}</span> 
@@ -62,7 +62,7 @@
                                  
                             <div>
                                 <i class="fa-solid fa-rotate-right" @click="restoreTask(task)"></i>
-                                <i @click="deleteTask(task)" class="fa-solid fa-circle-xmark mx-2"></i>
+                                
                             </div>
                         </li>
                     </ul>

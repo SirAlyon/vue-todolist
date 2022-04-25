@@ -4,6 +4,7 @@ const app = new Vue ({
         newTask: '',
         deletedTasks: [],
         doneTasks: [],
+        todoTasks: [],
         tasks: [
             {
                 text: 'Learn HTML',
@@ -51,28 +52,24 @@ const app = new Vue ({
         },
         doTask(index, task){
             //console.log(this.tasks[index].done);
-            if (this.tasks[index].done){
-                this.tasks[index].done = false
-                
-            } else {
-                this.tasks[index].done = true
-            }
+            this.todoTasks.splice(index, 1)
+            console.log(index, task, this.todoTasks);
+            this.doneTasks.push(task)
 
-            if(task.done){
-                this.doneTasks.push(task)
-            }
             console.log(index, this.doneTasks);
         },
         doneTask(){
             this.tasks.forEach(task => {
                 if (task.done){
                     this.doneTasks.push(task)
-                    console.log(this.doneTasks);
                     //console.log(this.tasks);
                 } else {
-
+                    this.todoTasks.push(task)
                 }
+                
             });
+            console.log(this.doneTasks);
+            console.log(this.todoTasks);
         },
         redoTask(task){
             if (this.doneTasks.includes(task)){
@@ -80,6 +77,15 @@ const app = new Vue ({
                 if (i > -1) {
                     this.doneTasks.splice(i, 1); 
                     task.done = false
+                    this.todoTasks.push(task)
+                  }
+                console.log(this.doneTasks);
+            }else if (this.deletedTasks.includes(task)){
+                
+                let i = this.deletedTasks.indexOf(task)
+                if (i > -1) {
+                    this.deletedTasks.splice(i, 1); 
+                    task.deleted = false
                   }
                 console.log(this.doneTasks);
             }
@@ -91,14 +97,17 @@ const app = new Vue ({
                     this.deletedTasks.splice(i, 1); 
                     task.done = true
                     task.deleted = false
+                    if (!this.doneTasks.includes(task)){
+                        this.doneTasks.push(task)
+                    }
                   }
-            }
+            } 
         },
         emptyTrash(){
             this.deletedTasks.splice(0, this.deletedTasks.length)
-        }
+        },
     },
     mounted:function(){
-        this.doneTask() //method1 will execute at pageload
+        this.doneTask() 
   },
 })
