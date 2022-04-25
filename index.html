@@ -27,11 +27,14 @@
                     <li v-for="(task, index) in tasks" class="px-3 py-2 mt-3">
                         <div>
                             <i class="fa-solid fa-check fa-xs" :class="task.done === true ? 'c_green' : 'c_red'"></i>
-                            <span :class="task.done === true ? 'line-through' : ''" @click="doTask(index)">{{task.text}}</span> 
+                            <span :class="task.done === true ? 'line-through' : ''" @click="doTask(index, task)">{{task.text}}</span> 
                         </div>
                         <i @click="deleteTask(index)" class="fa-solid fa-circle-xmark mx-2"></i>
                     </li>
                 </ul>
+            </div>
+            <div class="task">
+
             </div>
             <div class="tasks" v-else>
                 Non hai nessuna task da completare! 

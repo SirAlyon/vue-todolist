@@ -2,6 +2,7 @@ const app = new Vue ({
     el: '#app',
     data: {
         newTask: '',
+        deletedTasks: [],
         doneTasks: [],
         tasks: [
             {
@@ -31,10 +32,11 @@ const app = new Vue ({
         ]
     },
     methods: {
-        deleteTask(index){
-            console.log(this.tasks);
-            console.log(index);
-            this.tasks.splice(index, 1)
+        deleteTask(task){
+            task.deleted = true
+            console.log(task);
+            this.deletedTasks.push(task)
+            console.log(this.deletedTasks, task.deleted);
         },
         addNewTask(){
             const newTaskObject = {
@@ -58,12 +60,6 @@ const app = new Vue ({
 
             if(task.done){
                 this.doneTasks.push(task)
-            } else if (this.doneTasks.includes(task) && task.done === false){
-                let i = this.doneTasks.indexOf(task)
-                if (index > -1) {
-                    this.doneTasks.splice(index, 1); 
-                  }
-                console.log(this.doneTasks);
             }
             console.log(index, this.doneTasks);
         },
@@ -77,6 +73,29 @@ const app = new Vue ({
 
                 }
             });
+        },
+        redoTask(task){
+            if (this.doneTasks.includes(task)){
+                let i = this.doneTasks.indexOf(task)
+                if (i > -1) {
+                    this.doneTasks.splice(i, 1); 
+                    task.done = false
+                  }
+                console.log(this.doneTasks);
+            }
+        },
+        restoreTask(task){
+            if (this.deletedTasks.includes(task)){
+                let i = this.deletedTasks.indexOf(task)
+                if (i > -1) {
+                    this.deletedTasks.splice(i, 1); 
+                    task.done = true
+                    task.deleted = false
+                  }
+            }
+        },
+        emptyTrash(){
+            this.deletedTasks.splice(0, this.deletedTasks.length)
         }
     },
     mounted:function(){
